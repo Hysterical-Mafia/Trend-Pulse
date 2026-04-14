@@ -19,12 +19,18 @@ searchBtn.addEventListener("click", async function() {
     const data = await response.json();
     
     const posts = data.data.children;
-    console.log(posts)
 
     for (let i = 0; i < posts.length; i++) {
-        console.log("Test Run", i)
-    }
+        const post = posts[i];
+        const title = post.data.title;
 
+        const newDiv = document.createElement("div");
+        newDiv.id = "item" + i ;
+        newDiv.className = "post";
+
+        newDiv.textContent = title;
+        output.appendChild(newDiv)
+    }
 
 });
 
