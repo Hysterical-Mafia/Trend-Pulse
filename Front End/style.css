@@ -1,0 +1,63 @@
+body {
+    background-color: #0f1115;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 15px;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    color: #e6e6e6;
+    font-weight: 400;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+}
+
+button:hover, input:hover, #menu-btn:hover, #search-btn:hover, #search-input:hover {
+    border-color: #4da3ff;
+    background-color: #2a2f3a;
+    cursor: pointer;
+}
+
+#menu-btn, #search-input, #search-btn {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 20px;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    color: #e6e6e6;
+    font-weight: 600;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    background-color: #1a1d24;
+    border: 1px solid #2a2f3a;
+}
+
+#controls-section {
+    background-color: #1a1d24;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: flex;  
+    padding: 5px;
+}
+
+#output-section {
+    align-items: center;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.post {
+    background-color: #1a1d24;
+    color: #e6e6e6;
+    border: 1px solid #2a2f3a;
+    text-align: center;
+    padding: 10px;
+    max-width: 70%;
+    min-width: 70%; 
+    overflow-wrap: break-word;
+}
+
