@@ -61,3 +61,7 @@ button:hover, input:hover, #menu-btn:hover, #search-btn:hover, #search-input:hov
     overflow-wrap: break-word;
 }
 
+.post:hover {
+    transform:translateY(-2px);
+    transition:250ms
+}
