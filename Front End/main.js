@@ -15,8 +15,8 @@ function updateOutput(text) {
         return;
     }
     updateOutput("Searching for: " + keyword);
-
-    const url = "http://localhost:3000/search?keyword=" + keyword;  
+    
+    const url = "https://www.reddit.com/r/technology/search.json?q=" + keyword;
     const response = await fetch(url);
     const data = await response.json();
     
