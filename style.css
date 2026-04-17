@@ -25,7 +25,7 @@ header {
     color: #e6e6e6;
     font-weight: 600;
     background-color: #1a1d24;
-    border: 1px solid #2a2f3a;
+    
 }
 
 #search-input { 
@@ -34,6 +34,7 @@ header {
     color: #e6e6e6;
     font-weight: 600;
     background-color: #1a1d24;
+    cursor: text;
 }
 
 button:hover, input:hover {
@@ -43,8 +44,8 @@ button:hover, input:hover {
 }
 
 #status {
-    color: rgb(209, 204, 204);
-    
+    color: rgb(206, 204, 204);
+    border: 1px;
 }
 
 #output-section {

@@ -16,7 +16,7 @@ function updateOutput(text) {
     }
     updateOutput("Searching for: " + keyword);
     
-    const url = "/api/search?keyword=" + keyword;
+    const url = `/api/search?keyword=` + keyword;
     const response = await fetch(url);
     const data = await response.json();
     
