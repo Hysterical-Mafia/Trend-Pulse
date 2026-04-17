@@ -6,6 +6,7 @@ const status = document.getElementById("status");
 
 function updateOutput(text) {
     status.textContent = text;
+    console.log("First Step")
 }
     searchBtn.addEventListener("click", async function() {
     const keyword = input.value; 

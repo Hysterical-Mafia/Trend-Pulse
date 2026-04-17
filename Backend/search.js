@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     const redditUrl = `https://www.reddit.com/search.json?q=${keyword}`;
 
     const response =   await fetch(redditUrl);
-    const data = await response.json();
+    const data = await responsope.json();
     const posts = data.data.children;
 
     const cleanPosts = [];
