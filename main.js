@@ -3,34 +3,60 @@ const searchBtn = document.getElementById("search-btn");
 const output = document.getElementById("output-section");
 const status = document.getElementById("status");
 
-function updateOutput(text) {
+function setStatus(text) {
     status.textContent = text;
-    console.log("First test")
 }
-    searchBtn.addEventListener("click", async function() {
-    const keyword = input.value; 
 
-    if (keyword.trim() == "") {
-        alert("my input has no value");
+function clearOutput() {
+    output.innerHTML = "";
+}
+
+function renderPosts(posts) {
+    clearOutput();
+
+    posts.forEach(post => {
+        const div = document.createElement("div");
+        div.className = "post";
+        div.textContent = post.title;
+        output.appendChild(div);
+    });
+}
+
+async function searchReddit(keyword) {
+    const response = await fetch(`/api/search?keyword=${encodeURIComponent(keyword)}`);
+
+    if (!response.ok) {
+        throw new Error("API request failed");
+    }
+
+    return await response.json();
+}
+
+searchBtn.addEventListener("click", async () => {
+    const keyword = input.value.trim();
+
+    if (!keyword) {
+        alert("Input is empty");
         return;
     }
-    updateOutput("Searching for: " + keyword);
-    console.log("Second test");
-    
-    const response = await fetch(`/api/search?keyword=${keyword}`);
-    const data = await response.json();
 
-    output.innerHTML = "";
+    try {
+        setStatus(`Searching: ${keyword}...`);
 
-    for (let i = 0; i < data.posts.length; i++) {
-        const post = data.posts[i];
+        const data = await searchReddit(keyword);
 
-        const newDiv = document.createElement("div");
-        newDiv.className = "post";
-        newDiv.textContent = post.title;
-        output.appendChild(newDiv);
+        if (!data.posts || data.posts.length === 0) {
+            setStatus("No results found");
+            clearOutput();
+            return;
+        }
+
+        setStatus(`Found ${data.posts.length} posts`);
+        renderPosts(data.posts);
+
+    } catch (err) {
+        console.error(err);
+        setStatus("Error fetching data");
+        clearOutput();
     }
 });
-
-
-

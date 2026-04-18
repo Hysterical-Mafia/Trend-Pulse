@@ -1,40 +1,54 @@
-export default async function handler(req, res) { 
-    const rawKeyword = req.query.keyword;
+export default async function handler(req, res) {
+    try {
+        const rawKeyword = req.query.keyword;
 
-    if (!rawKeyword) {
-        return res.status(400).json({error: "Missing Keyword"})
-    }
-    const keyword = encodeURIComponent(rawKeyword);
-
-    const redditUrl = `https://www.reddit.com/search.json?q=${keyword}`;
-
-    const response =   await fetch(redditUrl,  {
-        headers: {
-            "User-Agent": "reddit-heatmap-app/1.0"
+        if (!rawKeyword) {
+            return res.status(400).json({
+                error: "Missing keyword"
+            });
         }
-    });
-    const data = await response.json();
-    const posts = data.data.children;
 
-    const cleanPosts = [];
-    const resultAmount = 30
+        const keyword = encodeURIComponent(rawKeyword);
+        const url = `https://www.reddit.com/search.json?q=${keyword}&limit=30`;
 
-    for (let i = 0; i < Math.min(posts.length, resultAmount); i++) {
-        const post = posts[i].data;
+        const response = await fetch(url, {
+            headers: {
+                "User-Agent": "reddit-heatmap-app/1.0"
+            }
+        });
 
-        cleanPosts.push ({
-            title: post.title,
-            subreddit: post.subreddit_name_prefixed,
-            upvotes: post.ups,
-            downvotes: post.downs,
-            ratio: post.upvote_ratio,
-            permalink: `https://reddit.com${post.permalink}`,
+        if (!response.ok) {
+            return res.status(500).json({
+                error: "Failed to fetch Reddit data"
+            });
+        }
+
+        const data = await response.json();
+
+        const children = data?.data?.children || [];
+
+        const posts = children.slice(0, 30).map(item => {
+            const post = item.data;
+
+            return {
+                title: post.title,
+                subreddit: post.subreddit_name_prefixed,
+                upvotes: post.ups,
+                downvotes: post.downs,
+                ratio: post.upvote_ratio,
+                permalink: `https://reddit.com${post.permalink}`
+            };
+        });
+
+        return res.status(200).json({
+            keyword: rawKeyword,
+            posts
+        });
+
+    } catch (err) {
+        return res.status(500).json({
+            error: "Server crash",
+            details: err.message
         });
     }
-
-    res.status(200).json({
-        message: "You searched for " + rawKeyword,
-        posts: cleanPosts
-    });
-
 }
