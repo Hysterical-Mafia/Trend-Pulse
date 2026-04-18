@@ -1,7 +1,6 @@
 const input = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-btn");
 const output = document.getElementById("output-section");
-
 const status = document.getElementById("status");
 
 function updateOutput(text) {
@@ -16,18 +15,21 @@ function updateOutput(text) {
         return;
     }
     updateOutput("Searching for: " + keyword);
-    console.log("Second test")
+    console.log("Second test");
     
-    for (let i = 0; i < posts.length; i++) {
-        const newDiv = document.createElement("div");
-        newDiv.classList.add("postDiv" + i);
-        console.log("Third test")
-        newDiv.className = "post";
-        newDiv.textContent = title;
+    const response = await fetch `/api/search?keyword=${keyword}`;
+    const data = await response.json();
 
+    output.innerHTML = "";
+
+    for (let i = 0; i < data.posts.length; i++) {
+        const post = data(posts[i]);
+
+        const newDiv = document.createElement("div");
+        newDiv.className = "post";
+        newDiv.textContent = post.title;
         output.appendChild(newDiv);
     }
-
 });
 
 

@@ -17,8 +17,9 @@ export default async function handler(req, res) {
     const posts = data.data.children;
 
     const cleanPosts = [];
+    const resultAmount = 30
 
-    for (let i = 0; i < Math.min(posts.length, 30); i++) {
+    for (let i = 0; i < Math.min(posts.length, resultAmount); i++) {
         const post = posts[i].data;
 
         cleanPosts.push ({
