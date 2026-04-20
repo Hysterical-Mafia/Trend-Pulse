@@ -13,8 +13,6 @@ searchBtn.addEventListener("click", async function() {
     console.log("Step 3: Get Input")
 })
 
-output.innerHTML = "";
-
 function getInput(keyword){
     status.textContent = keyword;
 }
@@ -35,5 +33,5 @@ async function getData(keyword){
 }
 
 function renderUI(keyword){
-    output.textContent = keyword
+    status.innerHTML = ("Searching for: " + keyword)
 }
