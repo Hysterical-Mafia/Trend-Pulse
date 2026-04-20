@@ -6,10 +6,11 @@ const status = document.getElementById("status");
 searchBtn.addEventListener("click", async function() {
     const keyword = input.value;
     getInput(keyword)
-    console.log("test")
+    console.log("Step 1: Get Input")
     validate(keyword)
-
+    console.log("Step 2: Validate")
     getData.async(keyword)
+    console.log("Step 3: Get Data")
 })
 
 function getInput(keyword){
@@ -17,7 +18,7 @@ function getInput(keyword){
 }
 
 function validate(keyword){
-    if (keyword.length() >= 30 | keyword.trim() == "" ) {
+    if (keyword.length(keyword) >= 30 | keyword.trim() == "" ) {
         status.textContent = "Invalid Input";
         console.error("INVALID INPUT")
     }}
