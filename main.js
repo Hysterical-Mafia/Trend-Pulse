@@ -3,60 +3,34 @@ const searchBtn = document.getElementById("search-btn");
 const output = document.getElementById("output-section");
 const status = document.getElementById("status");
 
-function setStatus(text) {
+function updateOutput(text) {
     status.textContent = text;
+    console.log("First test")
 }
+    searchBtn.addEventListener("click", async function() {
+    const keyword = input.value; 
 
-function clearOutput() {
-    output.innerHTML = "";
-}
-
-function renderPosts(posts) {
-    clearOutput();
-
-    posts.forEach(post => {
-        const div = document.createElement("div");
-        div.className = "post";
-        div.textContent = post.title;
-        output.appendChild(div);
-    });
-}
-
-async function fetchReddit(keyword) {
-    const res = await fetch(`/api/search?keyword=${encodeURIComponent(keyword)}`);
-
-    if (!res.ok) {
-        throw new Error("API failed");
-    }
-
-    return await res.json();
-}
-
-searchBtn.addEventListener("click", async () => {
-    const keyword = input.value.trim();
-
-    if (!keyword) {
-        setStatus("Empty input");
+    if (keyword.trim() == "") {
+        alert("my input has no value");
         return;
     }
+    updateOutput("Searching for: " + keyword);
+    console.log("Second test");
+    
+    const response = await fetch(`/api/search?keyword=${keyword}`);
+    const data = await response.json();
 
-    try {
-        setStatus("Searching...");
+    output.innerHTML = "";
 
-        const data = await fetchReddit(keyword);
+    for (let i = 0; i < data.posts.length; i++) {
+        const post = data.posts[i];
 
-        if (!data.posts || data.posts.length === 0) {
-            setStatus("No results");
-            clearOutput();
-            return;
-        }
-
-        setStatus(`Found ${data.posts.length} posts`);
-        renderPosts(data.posts);
-
-    } catch (err) {
-        console.error(err);
-        setStatus("Error fetching data");
-        clearOutput();
+        const newDiv = document.createElement("div");
+        newDiv.className = "post";
+        newDiv.textContent = post.title;
+        output.appendChild(newDiv);
     }
 });
+
+
+
