@@ -1,3 +1,5 @@
+const BASE_URL = "https://hn.algolia.com/api/v1/search?query=";
+
 export default async function handler(req, res) { 
     const rawKeyword = req.query.keyword;
 
@@ -6,27 +8,25 @@ export default async function handler(req, res) {
     }
     const keyword = encodeURIComponent(rawKeyword);
 
-    const redditUrl = `https://www.reddit.com/search.json?q=${keyword}`;
-    const response =   await fetch(redditUrl,  {
-        headers: {
-            "User-Agent": "reddit-heatmap-app/1.0"
-        }
-    });
+    const response = await fetch(BASE_URL)
     const data = await response.json();
-    const posts = data.data.children;
+
+    const hits = data.hits;
 
     const cleanPosts = [];
 
     for (let i = 0; i < Math.min(posts.length, 30); i++) {
-        const post = posts[i].data;
+        const post = hits[i];
 
         cleanPosts.push ({
             title: post.title,
-            subreddit: post.subreddit_name_prefixed,
-            upvotes: post.ups,
-            downvotes: post.downs,
-            ratio: post.upvote_ratio,
-            permalink: `https://reddit.com${post.permalink}`,
+            type: post.type,
+            score: post.score,
+            time: post.time,
+            url: post.url,
+            userCreated: post.created,
+            url: post.url,
+
         });
     }
 

@@ -1,3 +1,5 @@
+import { convert } from "three/tsl";
+
 const input = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-btn");
 const output = document.getElementById("output-section");
@@ -9,7 +11,6 @@ searchBtn.addEventListener("click", async function() {
     console.log("test")
     validate(keyword)
 
-  
     getData(keyword)
 })
 

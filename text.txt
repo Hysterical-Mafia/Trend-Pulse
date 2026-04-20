@@ -5,6 +5,16 @@ input.addEventListener("keypress", function(e) {
 })
 
 
+function convertUnix(){
+    let unixTime = userCreated
+    let datObj = newDate(convertUnix * 1000);
+
+    let time = utcString.slice(-11,-4);
+    console.log(time)
+}
+
+
+
 function updateOutput(text) {
     status.textContent = text;
     console.log("First test")
