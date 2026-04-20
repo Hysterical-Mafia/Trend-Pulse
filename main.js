@@ -9,7 +9,7 @@ searchBtn.addEventListener("click", async function() {
     console.log("test")
     validate(keyword)
 
-    getData(keyword)
+    getData.async(keyword)
 })
 
 function getInput(keyword){
@@ -17,7 +17,7 @@ function getInput(keyword){
 }
 
 function validate(keyword){
-    if (keyword.trim() == "") {
+    if (keyword.length() >= 30 | keyword.trim() == "" ) {
         status.textContent = "Invalid Input";
         console.error("INVALID INPUT")
     }}

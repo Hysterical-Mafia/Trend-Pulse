@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     const response = await fetch(BASE_URL)
     const data = await response.json();
 
-    const hits = data.hits;
+    const hits = data.hits
 
     const cleanPosts = [];
 
