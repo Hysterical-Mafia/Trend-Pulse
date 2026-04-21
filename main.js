@@ -35,6 +35,7 @@ function renderUI(posts, keyword){
         for (let i = 0; i < posts.length; i++) {
             const post = posts[i];
 
+            const newDiv = document.createElement("div");
             newDiv.className = "post";
             newDiv.textContent = post.title;
             output.appendChild(newDiv);
