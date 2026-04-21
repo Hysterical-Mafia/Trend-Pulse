@@ -3,7 +3,13 @@ const searchBtn = document.getElementById("search-btn");
 const output = document.getElementById("output-section");
 const status = document.getElementById("status");
 
+input.addEventListener("keypress", function(e) {
+    if (e.key == "Enter")
+        console.log("Enter With `enter` key")
+})
+
 searchBtn.addEventListener("click", async function() {
+    output.textContent == "";
     const keyword = input.value;
 
     getInput(keyword)
@@ -13,9 +19,9 @@ searchBtn.addEventListener("click", async function() {
         console.error("INVALID INPUT");
         return;
     }
-    
+
     getData(keyword)
-    console.log("Step 3: Get Input")
+
 })
 
 function getInput(keyword){
