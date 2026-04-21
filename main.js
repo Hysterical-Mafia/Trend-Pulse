@@ -21,17 +21,23 @@ function validate(keyword){
     if (keyword.length >= 30 | keyword.trim() == "" ) {
         status.textContent = "Invalid Input";
         console.error("INVALID INPUT");
-        return false;
-    }
-    return true;
-}
+    }}
 
 async function getData(keyword){
     const res = await fetch(`/api/search?keyword=${keyword}`);
     const data = await res.json();
-    renderUI(data.posts)
+    console.log(keyword)
+    renderUI(data.posts, keyword)
 }
 
-function renderUI(keyword){
-    status.innerHTML = ("Searching for: " + keyword)
-}
+function renderUI(posts, keyword){
+    status.textContent = ("Searching for: " + keyword);
+        for (let i = 0; i < posts.length; i++) {
+            const post = posts[i];
+
+            newDiv.className = "post";
+            newDiv.textContent = post.title;
+            output.appendChild(newDiv);
+    }
+
+    }
