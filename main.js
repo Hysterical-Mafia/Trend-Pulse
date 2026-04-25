@@ -22,9 +22,6 @@ searchBtn.addEventListener("click", async function() {
 
 })
 
-
-
-
 function getInput(keyword){
     status.textContent = keyword;
 }
@@ -39,7 +36,7 @@ function validate(keyword){
 async function getData(keyword){
     const res = await fetch(`/api/search?keyword=${keyword}`);
     const data = await res.json();
-    console.log(keyword)
+    console.log("Search: " + keyword)
     renderUI(data.posts, keyword)
 }
 
