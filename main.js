@@ -43,12 +43,13 @@ function renderUI(posts, keyword){
     output.innerHTML = "";
     console.log(output.innerText)
     status.textContent = ("Searching for: " + keyword);
-        for (let i = 0; i < posts.length; i++) {
-            const post = posts[posts.length];
-            
-            const newDiv = document.createElement("div");
-            newDiv.className = "post";
-            newDiv.textContent = post.title;
-            output.appendChild(newDiv);
-    };
-    }
+        for (let i = 0; i < post.length; i++) {
+            const post = posts[i];
+            for (post in posts) {
+                const newDiv = document.createElement("div");
+                newDiv.className = "post";
+                newDiv.textContent = post.title;
+                output.appendChild(newDiv);
+            };
+        };
+}
