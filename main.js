@@ -43,7 +43,7 @@ function renderUI(posts, keyword){
     output.innerHTML = "";
     console.log(output.innerText)
     status.textContent = ("Searching for: " + keyword);
-        for (let i = 0; i < post.length; i++) {
+        for (let i = 0; i < posts.length; i++) {
             const post = posts[i];
             for (post in posts) {
                 const newDiv = document.createElement("div");
