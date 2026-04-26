@@ -3,8 +3,8 @@ const searchBtn = document.getElementById("search-btn");
 const output = document.getElementById("output-section");
 const status = document.getElementById("status");
 
-input.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
+input.addEventListener("keydown", function(enter) {
+    if (enter.key === "Enter") {
         searchBtn.click();
     }
 });
@@ -12,12 +12,14 @@ input.addEventListener("keydown", function(e) {
 searchBtn.addEventListener("click", async function() {
     const keyword = input.value.trim().toLowerCase();
 
-    if (validate(keyword) === "title") {
+    // to make sure validate checks for words instead of letters, loop through each word in post.title seperate them and store them
+    // then loop through them and store the ones that contain a word or rather the letters in which were types
+
+    if (!validate(keyword)) {
         status.textContent = "Invalid Input";
         return;
     }
     getInput(keyword)
-    
     await getData(keyword)
 
 })
@@ -28,6 +30,10 @@ function getInput(keyword){
 
 function validate(keyword){
     if (keyword.length >= 30 || keyword.trim() === "" ) {
+        console.log("Error with " + keyword)
+        //add later different error messages
+        //ex. not enough characters for results, no search results found, limited results found 
+        // not necessarily have to add the latter, mostly just for UI experience
         return false;
     }
     return true;
@@ -36,7 +42,7 @@ function validate(keyword){
 async function getData(keyword){
     const res = await fetch(`/api/search?keyword=${keyword}`);
     const data = await res.json();
-    console.log("Search: " + keyword)
+    console.log("GetData: " + keyword)
     renderUI(data.posts, keyword)
 }
 
