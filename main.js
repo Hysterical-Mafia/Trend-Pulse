@@ -11,44 +11,42 @@ input.addEventListener("keydown", function(enter) {
 
 searchBtn.addEventListener("click", async function() {
     const keyword = input.value.trim().toLowerCase();
-
     // to make sure validate checks for words instead of letters, loop through each word in post.title seperate them and store them
     // then loop through them and store the ones that contain a word or rather the letters in which were types
-
+    
     if (!validate(keyword)) {
         status.textContent = "Invalid Input";
         return;
     }
-    getInput(keyword)
     await getData(keyword)
 
 })
 
-function getInput(keyword){
-    status.textContent = keyword;
-}
-
 function validate(keyword){
     if (keyword.length >= 30 || keyword.trim() === "" ) {
-        console.log("Error with " + keyword)
+        console.log("Error! " + keyword);
         //add later different error messages
-        //ex. not enough characters for results, no search results found, limited results found 
-        // not necessarily have to add the latter, mostly just for UI experience
+
         return false;
     }
     return true;
 }
 
 async function getData(keyword){
+
+    //try statments, first check for network problems like no connection, timeout, dns
+    //https response check if res.ok for 200-299 or res.status, code continues like everything fine no matter what
+    //currently getting a contract, message with string, posts with array of objected and each object with certain fields like name,score etc.
+    //  a failure could mean null or missing values or unexpected shaped.
     const res = await fetch(`/api/search?keyword=${keyword}`);
     const data = await res.json();
-    console.log("GetData: " + keyword)
+    console.log("Step 4: " + keyword)
     renderUI(data.posts, keyword)
 }
 
 function renderUI(posts, keyword){
     output.innerHTML = "";
-    console.log(output.innerText)
+
     status.textContent = ("Searching for: " + keyword);
         for (let i = 0; i < posts.length; i++) {
             const post = posts[i];
@@ -60,3 +58,5 @@ function renderUI(posts, keyword){
     }
 
     }
+        //ex. not enough characters for results, no search results found, limited results found 
+        // not necessarily have to add the latter, mostly just for UI experience
