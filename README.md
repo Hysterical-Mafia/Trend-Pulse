@@ -1,7 +1,8 @@
 # Search & Filter Web Application
+(WORK IN PROGRESS)
 
 ## Live Demo
-Deployed on Vercel: https://your-project-link.vercel.app
+Deployed on Vercel: https://trend-pulse-website.vercel.app/
 
 ## Overview
 A frontend web application that allows users to search and filter content dynamically using keyword input. The app fetches data from a backend API and renders results in real time.
@@ -22,7 +23,7 @@ The project focuses on practical JavaScript skills including API integration, DO
 - CSS3
 - JavaScript (ES6+)
 - Fetch API
-- Backend API (Node.js / Express or similar)
+- Backend API (Node.js)
 - Vercel (deployment)
 
 ## How It Works
@@ -51,6 +52,3 @@ This project is deployed using **Vercel** for fast frontend hosting and automati
 - Improve UI responsiveness and design polish
 - Add error handling for failed API calls
 - Optimize backend search performance
-
-## Status
-Actively developed learning project focused on improving real-world frontend engineering skills and building production-like web applications.
