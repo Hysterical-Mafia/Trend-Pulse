@@ -1,5 +1,4 @@
 # Search & Filter Web Application
-(WORK IN PROGRESS)
 
 ## Live Demo
 Deployed on Vercel: https://trend-pulse-website.vercel.app/
@@ -30,7 +29,6 @@ The project focuses on practical JavaScript skills including API integration, DO
 1. User enters a search keyword
 2. Input is validated and normalized
 3. Frontend sends request to API endpoint:
-   - `/api/search?keyword=...`
 4. Backend returns matching results
 5. Frontend renders results dynamically in the UI
 
@@ -45,10 +43,4 @@ This project is deployed using **Vercel** for fast frontend hosting and automati
 - Event-driven programming (click + keyboard events)
 - Dynamic UI rendering based on API response
 
-## Future Improvements
-- Add loading spinner during API requests
-- Implement partial/fuzzy search matching
-- Add pagination or infinite scroll
-- Improve UI responsiveness and design polish
-- Add error handling for failed API calls
-- Optimize backend search performance
+
