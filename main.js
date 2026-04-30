@@ -81,23 +81,17 @@ function renderUI(posts, keyword){
     }
     for (let i = 0; i < posts.length; i++) {
         const post = posts[i];
-        console.log(post.url);
         const newDiv = document.createElement("div");
         newDiv.className = "post";
 
-        if (post.url && post.url.startsWith("http")) {
-            newDiv.innerHTML = `
-                <a href="${post.url}" target="_blank" rel="noopener noreferrer">
-                    <div class="title">${post.title || "No Title"}</div>
-                    <div class="meta">SEE MORE</div>
-                </a>
-            `;
-        } else {
-            newDiv.innerHTML = `
-                <div class="title">${post.title || "No Title"}</div>
-                <div class="meta">No external link</div>
-            `;
-    }
+        newDiv.innerHTML = `
+            <a href="${post.url}" target="_blank" rel="noopener noreferrer">
+            <div class="title">${post.title || "No Title"}</div>
+            <div class="meta">
+                ${post.author || "unknown"} • ${post.score || 0} points
+            </div>
+        </a>
+    `;
 
         output.appendChild(newDiv);
     }

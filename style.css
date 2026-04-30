@@ -95,3 +95,9 @@ main {
 #search-input:hover {
     background-color: #232834;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}

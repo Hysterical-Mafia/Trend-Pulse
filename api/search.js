@@ -20,13 +20,14 @@ export default async function handler(req, res) {
         const hits = data.hits || [];
 
         const cleanPosts = hits
+            .filter(post => post.title)
             .slice(0, 30)
             .map(post => ({
                 title: post.title,
                 author: post.author,
                 score: post.points,
                 time: post.created_at,
-                url: post.url,
+                url: post.url || `https://news.ycombinator.com/item?id=${post.objectID}`,
         }));
 
         return res.status(200).json({posts: cleanPosts});
