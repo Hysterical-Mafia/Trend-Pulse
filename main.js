@@ -82,7 +82,6 @@ function renderUI(posts, keyword){
     for (let i = 0; i < posts.length; i++) {
         const post = posts[i];
 
-        //(optional)add time to the posts
         const newDiv = document.createElement("div");
         newDiv.className = "post";
         newDiv.innerHTML = `
@@ -92,7 +91,7 @@ function renderUI(posts, keyword){
                 
             </div>
         `;
-        if (post.url && post.url.startsWith("http")) { 
+        if (post.url) { 
             newDiv.addEventListener("click", () => {
                 window.open(post.url, "_blank");
             });
