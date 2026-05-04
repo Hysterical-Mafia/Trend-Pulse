@@ -3,6 +3,8 @@ const searchBtn = document.getElementById("search-btn");
 const output = document.getElementById("output-section");
 const status = document.getElementById("status");
 const randomBtn = document.getElementById("random-btn");
+
+//UI state
 let loading = false;
 let currentPosts = [];
 
@@ -51,7 +53,8 @@ function validate(keyword){
 async function getData(keyword){
     status.textContent = "Loading...";
     try {
-        const res = await fetch(`/api/search?keyword=${keyword}`);
+        // Fetch search results from backend API using {keyword} as the query paramater
+        const res = await fetch(`/api/search?keyword=${encodeURIComponent(keyword)}`);
         if (!res.ok) {
             throw new Error("API Error: " + res.status);
         }
@@ -97,6 +100,7 @@ function renderUI(posts, keyword){
     }
     }
 
+//Fisher–Yates shuffle, randomization of array order, unbiased
 function shuffle(array) {
     const copy = [...array];
 

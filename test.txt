@@ -1,6 +1,0 @@
-localeCompare can be used for alphabetical, reverse alphabetical order,
-
-If there are no posts in the current search, show a message saying none found or if its the opposite show how many are there
-
-STILL BROKEM, MUST FIX getData function, safety check and catch errors
-

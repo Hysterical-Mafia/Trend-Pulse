@@ -5,6 +5,12 @@ body {
     color: #e6e6e6;
 }
 
+main {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
 header {
     text-align: center;
     padding: 20px;
@@ -35,10 +41,15 @@ header {
     cursor: pointer;
 }
 
-#search-input:hover {
-    border-color: #4da3ff;
+#search-input {
+    width: 200px;
+    max-width: 100%;
 }
 
+#search-input:hover {
+    border-color: #4da3ff;
+    background-color: #232834;
+}
 #status {
     margin-top: 10px;
     padding: 6px 10px;
@@ -48,6 +59,15 @@ header {
     background-color: #1a1d24;
 }
 
+#output-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 0;
+    width: 100%;
+    max-width: 900px;
+}
 
 .post {
     background-color: #1a1d24;
@@ -77,44 +97,13 @@ header {
     color: #9aa4b2;
 }
 
-main {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-}
-
-#output-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 20px 0;
-    width: 100%;
-    max-width: 900px;
-}
-
-#search-input {
-    width: 200px;
-    max-width: 100%;
-}
-
-#search-input:hover {
-    background-color: #232834;
-}
-
 a {
     text-decoration: none;
     color: inherit;
     display: block;
 }
 
-
-
-
-
-
-
-
+/*Mobile layout Changes*/
 
 @media (max-width: 600px) {
     #controls-section {

@@ -1,3 +1,4 @@
+//Hacker News Algolia API used as data source
 const BASE_URL = "https://hn.algolia.com/api/v1/search?query=";
 
 export default async function handler(req, res) {
@@ -18,7 +19,7 @@ export default async function handler(req, res) {
 
         const data = await response.json();
         const hits = data.hits || [];
-
+        // Remove posts without titles and limit size to at most 30 at a time
         const cleanPosts = hits
             .filter(post => post.title)
             .slice(0, 30)
