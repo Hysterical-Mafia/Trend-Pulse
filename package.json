@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Hysterical-Mafia/Trend-Pulse#readme",
   "description": "",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "rss-parser": "^3.13.0"
   }
 }
